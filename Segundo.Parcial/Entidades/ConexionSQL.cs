@@ -17,6 +17,7 @@ namespace Entidades
 
         public abstract List<T> CrearLista();
         public abstract void InicializarParametros_db(T item);
+        public abstract void ModificarParametros_db(T item);
 
         static ConexionSQL() 
         {
@@ -127,8 +128,79 @@ namespace Entidades
             return retorno;
         }
 
-        
+        public bool ModificarDatos(T item) 
+        {
+            bool retorno = true;
 
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.CommandType = CommandType.Text;
 
+                ModificarParametros_db(item);
+
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                if (filasAfectadas == 0)
+                {
+                    retorno = false;
+                }
+            }
+            catch 
+            {
+                retorno = false;
+            }
+            finally 
+            {
+                if (this.conexion.State == ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+
+            return retorno;
+        }
+
+        public bool EliminarDatos(int id, string nombreTabla) 
+        {
+            bool retorno = true;
+
+            try
+            {
+                this.comando = new SqlCommand();
+
+                this.comando.Parameters.AddWithValue("@id", id);
+
+                this.comando.CommandType = CommandType.Text;
+                this.comando.CommandText = $"DELETE FROM {nombreTabla} WHERE id = @id";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                if (filasAfectadas == 0)
+                {
+                    retorno = false;
+                }
+            }
+            catch
+            {
+                retorno = false;
+            }
+            finally 
+            {
+                if (this.conexion.State == ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+
+            return retorno;
+        }
     }
 }

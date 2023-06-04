@@ -72,9 +72,20 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
+        public override void ModificarParametros_db(Usuario user) 
+        {
+            this.comando.Parameters.AddWithValue("@nombre", user.nombre);
+            this.comando.Parameters.AddWithValue("@partidasJugadas", user.partidasJugadas);
+            this.comando.Parameters.AddWithValue("@partidasGanadas", user.partidasGanadas);
+
+            string comando = $"UPDATE usuarios SET nombre = @nombre, partidasJugadas = @partidasJugadas, partidasGanadas = @partidasGanadas WHERE id = {user.id}";
+        
+            this.comando.CommandText = comando;
+        }
+
         public override string ToString()
         {
-            return $"ID: {this.id}, Nombre: {this.nombre}, Jugadas: {this.partidasJugadas}, Ganadas: {this.PartidasGanadas}.";
+            return $"ID: {this.id}, Nombre: {this.nombre}, Jugadas: {this.partidasJugadas}, Ganadas: {this.PartidasGanadas}.\n";
         }
 
     }

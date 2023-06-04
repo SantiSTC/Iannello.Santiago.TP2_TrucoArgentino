@@ -24,26 +24,54 @@ namespace Truco
         private void button1_Click(object sender, EventArgs e)
         {
             Usuario u1 = new Usuario();
-            //string cadena = "";
+            string cadena = "";
 
-            //foreach (Usuario u in u1.ObtenerDatos("usuarios")) 
+            foreach (Usuario u in u1.ObtenerDatos("usuarios")) 
+            {
+                cadena += u.ToString();
+            }
+
+            MessageBox.Show($"{cadena}");
+
+            //if (u1.AgregarDatos(new Usuario("Jorge", 100, 43)))
             //{
-            //    cadena += u.ToString();
+            //    cadena = "";
+
+            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
+            //    {
+            //        cadena += u.ToString();
+            //    }
+
+            //    MessageBox.Show($"{cadena}");
             //}
 
-            //MessageBox.Show($"{cadena}");
+            //if (u1.EliminarDatos(2, "usuarios")) 
+            //{
+            //    cadena = "";
 
-            if (u1.AgregarDatos(new Usuario("Marcelo", 25, 5)))
-            {
-                string cadena = "";
+            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
+            //    {
+            //        cadena += u.ToString();
+            //    }
 
-                foreach (Usuario u in u1.ObtenerDatos("usuarios"))
-                {
-                    cadena += u.ToString();
-                }
+            //    MessageBox.Show($"{cadena}");
+            //}
+            //else 
+            //{
+            //    MessageBox.Show($"ERROR");
+            //}
 
-                MessageBox.Show($"{cadena}");
-            }
+            //if (u1.ModificarDatos(new Usuario(1, "Mario", 100, 43)))
+            //{
+            //    cadena = "";
+
+            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
+            //    {
+            //        cadena += u.ToString();
+            //    }
+
+            //    MessageBox.Show($"{cadena}");
+            //}
 
 
 
