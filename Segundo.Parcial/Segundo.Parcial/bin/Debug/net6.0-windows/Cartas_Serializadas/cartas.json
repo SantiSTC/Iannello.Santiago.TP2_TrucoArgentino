@@ -1,0 +1,242 @@
+[
+  {
+    "Palo": 0,
+    "Numero": 1,
+    "ValorTruco": 14,
+    "ValorEnvido": 1
+  },
+  {
+    "Palo": 0,
+    "Numero": 2,
+    "ValorTruco": 9,
+    "ValorEnvido": 2
+  },
+  {
+    "Palo": 0,
+    "Numero": 3,
+    "ValorTruco": 10,
+    "ValorEnvido": 3
+  },
+  {
+    "Palo": 0,
+    "Numero": 4,
+    "ValorTruco": 1,
+    "ValorEnvido": 4
+  },
+  {
+    "Palo": 0,
+    "Numero": 5,
+    "ValorTruco": 2,
+    "ValorEnvido": 5
+  },
+  {
+    "Palo": 0,
+    "Numero": 6,
+    "ValorTruco": 3,
+    "ValorEnvido": 6
+  },
+  {
+    "Palo": 0,
+    "Numero": 7,
+    "ValorTruco":12,
+    "ValorEnvido": 7
+  },
+  {
+    "Palo": 0,
+    "Numero": 10,
+    "ValorTruco": 5,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 0,
+    "Numero": 11,
+    "ValorTruco": 6,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 0,
+    "Numero": 12,
+    "ValorTruco": 7,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 1,
+    "Numero": 1,
+    "ValorTruco": 8,
+    "ValorEnvido": 1
+  },
+  {
+    "Palo": 1,
+    "Numero": 2,
+    "ValorTruco": 9,
+    "ValorEnvido": 2
+  },
+  {
+    "Palo": 1,
+    "Numero": 3,
+    "ValorTruco": 10,
+    "ValorEnvido": 3
+  },
+  {
+    "Palo": 1,
+    "Numero": 4,
+    "ValorTruco": 1,
+    "ValorEnvido": 4
+  },
+  {
+    "Palo": 1,
+    "Numero": 5,
+    "ValorTruco": 2,
+    "ValorEnvido": 5
+  },
+  {
+    "Palo": 1,
+    "Numero": 6,
+    "ValorTruco": 3,
+    "ValorEnvido": 6
+  },
+  {
+    "Palo": 1,
+    "Numero": 7,
+    "ValorTruco": 11,
+    "ValorEnvido": 7
+  },
+  {
+    "Palo": 1,
+    "Numero": 10,
+    "ValorTruco": 5,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 1,
+    "Numero": 11,
+    "ValorTruco": 6,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 1,
+    "Numero": 12,
+    "ValorTruco": 7,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 2,
+    "Numero": 1,
+    "ValorTruco": 13,
+    "ValorEnvido": 1
+  },
+  {
+    "Palo": 2,
+    "Numero": 2,
+    "ValorTruco": 9,
+    "ValorEnvido": 2
+  },
+  {
+    "Palo": 2,
+    "Numero": 3,
+    "ValorTruco": 10,
+    "ValorEnvido": 3
+  },
+  {
+    "Palo": 2,
+    "Numero": 4,
+    "ValorTruco": 1,
+    "ValorEnvido": 4
+  },
+  {
+    "Palo": 2,
+    "Numero": 5,
+    "ValorTruco": 2,
+    "ValorEnvido": 5
+  },
+  {
+    "Palo": 2,
+    "Numero": 6,
+    "ValorTruco": 3,
+    "ValorEnvido": 6
+  },
+  {
+    "Palo": 2,
+    "Numero": 7,
+    "ValorTruco": 4,
+    "ValorEnvido": 7
+  },
+  {
+    "Palo": 2,
+    "Numero": 10,
+    "ValorTruco": 5,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 2,
+    "Numero": 11,
+    "ValorTruco": 6,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 2,
+    "Numero": 12,
+    "ValorTruco": 7,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 3,
+    "Numero": 1,
+    "ValorTruco": 8,
+    "ValorEnvido": 1
+  },
+  {
+    "Palo": 3,
+    "Numero": 2,
+    "ValorTruco": 9,
+    "ValorEnvido": 2
+  },
+  {
+    "Palo": 3,
+    "Numero": 3,
+    "ValorTruco": 10,
+    "ValorEnvido": 3
+  },
+  {
+    "Palo": 3,
+    "Numero": 4,
+    "ValorTruco": 1,
+    "ValorEnvido": 4
+  },
+  {
+    "Palo": 3,
+    "Numero": 5,
+    "ValorTruco": 2,
+    "ValorEnvido": 5
+  },
+  {
+    "Palo": 3,
+    "Numero": 6,
+    "ValorTruco": 3,
+    "ValorEnvido": 6
+  },
+  {
+    "Palo": 3,
+    "Numero": 7,
+    "ValorTruco": 4,
+    "ValorEnvido": 7
+  },
+  {
+    "Palo": 3,
+    "Numero": 10,
+    "ValorTruco": 5,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 3,
+    "Numero": 11,
+    "ValorTruco": 6,
+    "ValorEnvido": 0
+  },
+  {
+    "Palo": 3,
+    "Numero": 12,
+    "ValorTruco": 7,
+    "ValorEnvido": 0
+  }
+]

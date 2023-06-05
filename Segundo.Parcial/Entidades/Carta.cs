@@ -8,13 +8,25 @@ namespace Entidades
 {
     public class Carta
     {
-        public EPalos palo;
-        public int numero;
-        public int valorTruco;
-        public int valorEnvido;
+        private EPalos palo;
+        private int numero;
+        private int valorTruco;//13
+        private int valorEnvido;
 
-        
-        
+        public EPalos Palos { get { return this.palo; } set { this.palo = value; } }
+        public int Numero { get { return this.numero; } set { this.numero = value; } }
+        public int ValorTruco { get {  return this.valorTruco; } set { this.valorTruco = value; } }
+        public int ValorEnvido { get {  return this.valorEnvido; } set { this.valorEnvido = value; } }
+
+        public static bool operator >(Carta a, Carta b) 
+        {
+            return a.valorEnvido > b.valorEnvido;
+        }
+
+        public static bool operator <(Carta a, Carta b)
+        {
+            return a.valorEnvido < b.valorEnvido;
+        }
 
 
     }
