@@ -27,6 +27,7 @@ namespace Entidades
                     string jsonString = File.ReadAllText(path);
 
                     lista = JsonConvert.DeserializeObject<List<Carta>>(jsonString);
+                    //lista = System.Text.Json.JsonSerializer.Deserialize<List<Carta>>(jsonString);
                 }
             }
             catch (Exception) 

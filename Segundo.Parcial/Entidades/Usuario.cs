@@ -13,11 +13,15 @@ namespace Entidades
         private string nombre;
         private int partidasJugadas;
         private int partidasGanadas;
+        List<Carta> cartas;
+        private bool turno;
 
         public int ID { get { return this.id; } }
         public string Nombre { get {  return this.nombre; } set {  this.nombre = value; } }
         public int PartidasJugadas { get { return this.partidasJugadas; } set { this.partidasJugadas = value; } }
         public int PartidasGanadas { get { return this.partidasGanadas; } set { this.partidasGanadas = value; } }
+        public List<Carta> Cartas { get { return this.cartas; } set { this.cartas = value; } }
+        public bool Turno { get { return this.turno; } set { this.turno = value; } }
 
         public Usuario() { }
 
@@ -27,6 +31,7 @@ namespace Entidades
             this.nombre = nombre;
             this.partidasJugadas = 0;
             this.PartidasGanadas = 0;
+            cartas = new List<Carta>();
         }
 
         public Usuario(string nombre, int partidasJugadas, int partidasGanadas) 

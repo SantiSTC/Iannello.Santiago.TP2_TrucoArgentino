@@ -11,7 +11,10 @@ namespace Entidades
         int id;
         private Usuario jugador1;
         private Usuario jugador2;
+        int ptsJugador1;
+        int ptsJugador2;
         private bool enCurso;
+        List<Carta> mazo;
 
         public int ID { get { return this.id; } }
         public Usuario Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
@@ -71,11 +74,46 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
-        public void IniciarPartida() 
+        public void IniciarPartida(string path) 
         {
             this.enCurso = true;
             this.jugador1.PartidasJugadas += 1;
             this.jugador2.PartidasJugadas += 1;
+            this.mazo = Deserializacion.Deserializar(path);
+        }
+
+        public void RepartirCartas() 
+        {
+            Random random = new Random();
+            Carta aux;
+
+            for(int i = 0; i < 3; i++) 
+            {
+                int index = random.Next(0, 41);
+                aux = this.mazo[index];
+
+                while (jugador1.Cartas.Contains(aux)) 
+                {
+                    index = random.Next(0, 41);
+                    aux = this.mazo[index];
+                }
+
+                jugador1.Cartas.Add(aux);
+            }
+            for (int i = 0; i < 3; i++) 
+            {
+                int index = random.Next(0, 41);
+                aux = this.mazo[index];
+
+                while (jugador1.Cartas.Contains(aux) && jugador2.Cartas.Contains(aux))
+                {
+                    index = random.Next(0, 41);
+                    aux = this.mazo[index];
+                }
+
+                jugador2.Cartas.Add(aux);
+            }
+
 
         }
 

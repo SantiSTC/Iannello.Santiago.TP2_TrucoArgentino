@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj": {}
+    "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj": {}
   },
   "projects": {
-    "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj": {
+    "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj",
-        "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\obj\\",
+        "projectPath": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj",
+        "packagesPath": "C:\\Users\\Santiago\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Santiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,25 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj": {
+    "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj",
+        "projectUniqueName": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj",
         "projectName": "Truco",
-        "projectPath": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj",
-        "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\obj\\",
+        "projectPath": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\Truco.csproj",
+        "packagesPath": "C:\\Users\\Santiago\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Segundo.Parcial\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Santiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -101,8 +93,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\santi\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj"
+              "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\Santiago\\source\\repos\\Segundo.Parcial\\Entidades\\Entidades.csproj"
               }
             }
           }
@@ -141,7 +133,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

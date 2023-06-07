@@ -55,10 +55,10 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
-        public void IniciarPartida() 
-        {
-            this.partida.IniciarPartida();
-        }
+        //public void IniciarPartida() 
+        //{
+        //    this.partida.IniciarPartida();
+        //}
 
     }
 }
