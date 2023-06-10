@@ -8,26 +8,28 @@ namespace Entidades
 {
     public class Partida : ConexionSQL<Partida>
     {
-        int id;
-        private Usuario jugador1;
-        private Usuario jugador2;
-        int ptsJugador1;
-        int ptsJugador2;
+        private int id;
+        private Jugador jugador1;
+        private Jugador jugador2;
+        private int ptsJugador1;
+        private int ptsJugador2;
         private bool enCurso;
-        List<Carta> mazo;
+        private List<Carta> mazo;
 
         public int ID { get { return this.id; } }
-        public Usuario Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
-        public Usuario Jugador2 { get { return this.jugador2; } set { this.jugador2 = value; } }
+        public Jugador Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
+        public Jugador Jugador2 { get { return this.jugador2; } set { this.jugador2 = value; } }
         public bool EnCurso { get { return this.enCurso; } set { this.enCurso = value; } }
+        public int PtsJugador1 { get { return this.ptsJugador1; } set { this.ptsJugador1 = value; } }
+        public int PtsJugador2 { get { return this.ptsJugador2; } set { this.ptsJugador2 = value; } }
 
-        public Partida(Usuario j1, Usuario j2)
+        public Partida(Jugador j1, Jugador j2)
         {
             this.jugador1 = j1;
             this.jugador2 = j2;
             this.enCurso = false;
         }
-        public Partida(int id, Usuario j1, Usuario j2, bool enCurso)
+        public Partida(int id, Jugador j1, Jugador j2, bool enCurso)
         {
             this.id = id;
             this.jugador1 = j1;
@@ -42,8 +44,8 @@ namespace Entidades
             while (lector.Read())
             {
                 int id = (int)lector["id"];
-                Usuario jugador1 = (Usuario)lector["jugador1"];
-                Usuario jugador2 = (Usuario)lector["jugador2"];
+                Jugador jugador1 = (Jugador)lector["jugador1"];
+                Jugador jugador2 = (Jugador)lector["jugador2"];
                 bool enCurso = (bool)lector["enCurso"];
 
                 aux.Add(new Partida(id, jugador1, jugador2, enCurso));
@@ -89,12 +91,12 @@ namespace Entidades
 
             for(int i = 0; i < 3; i++) 
             {
-                int index = random.Next(0, 41);
+                int index = random.Next(0, 40);
                 aux = this.mazo[index];
 
                 while (jugador1.Cartas.Contains(aux)) 
                 {
-                    index = random.Next(0, 41);
+                    index = random.Next(0, 40);
                     aux = this.mazo[index];
                 }
 
@@ -102,12 +104,12 @@ namespace Entidades
             }
             for (int i = 0; i < 3; i++) 
             {
-                int index = random.Next(0, 41);
+                int index = random.Next(0, 40);
                 aux = this.mazo[index];
 
                 while (jugador1.Cartas.Contains(aux) && jugador2.Cartas.Contains(aux))
                 {
-                    index = random.Next(0, 41);
+                    index = random.Next(0, 40);
                     aux = this.mazo[index];
                 }
 

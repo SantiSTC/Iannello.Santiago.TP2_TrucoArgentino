@@ -82,8 +82,8 @@ namespace Truco
             //    cadena += c.ToString();
             //}
 
-            Usuario j1 = new Usuario("Juan");
-            Usuario j2 = new Usuario("Rafa");
+            Jugador j1 = new Jugador("Juan");
+            Jugador j2 = new Jugador("Rafa");
             Partida p = new Partida(j1, j2);
 
             //p.IniciarPartida(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");

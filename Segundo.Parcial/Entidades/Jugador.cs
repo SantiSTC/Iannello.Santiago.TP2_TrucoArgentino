@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Usuario : ConexionSQL<Usuario>
+    public class Jugador : ConexionSQL<Jugador>
     {
         private int id;
         private static int _ultimoID = 0;
@@ -23,9 +23,9 @@ namespace Entidades
         public List<Carta> Cartas { get { return this.cartas; } set { this.cartas = value; } }
         public bool Turno { get { return this.turno; } set { this.turno = value; } }
 
-        public Usuario() { }
+        public Jugador() { }
 
-        public Usuario(string nombre) 
+        public Jugador(string nombre) 
         {
             this.id = _ultimoID++;
             this.nombre = nombre;
@@ -34,14 +34,14 @@ namespace Entidades
             cartas = new List<Carta>();
         }
 
-        public Usuario(string nombre, int partidasJugadas, int partidasGanadas) 
+        public Jugador(string nombre, int partidasJugadas, int partidasGanadas) 
         {
             this.nombre = nombre;
             this.partidasJugadas = partidasJugadas;
             this.partidasGanadas = partidasGanadas;
         }
 
-        public Usuario(int id, string nombre, int partidasJugadas, int partidasGanadas)
+        public Jugador(int id, string nombre, int partidasJugadas, int partidasGanadas)
         {
             this.id = id;
             this.nombre = nombre;
@@ -49,9 +49,9 @@ namespace Entidades
             this.partidasGanadas = partidasGanadas;
         }
 
-        public override List<Usuario> CrearLista() 
+        public override List<Jugador> CrearLista() 
         {
-            List<Usuario> aux = new List<Usuario>();
+            List<Jugador> aux = new List<Jugador>();
 
             while (lector.Read())
             {
@@ -60,13 +60,13 @@ namespace Entidades
                 int partidasJugadas = (int)lector["partidasJugadas"];
                 int partidasGanadas = (int)lector["partidasGanadas"];
 
-                aux.Add(new Usuario(id, nombre, partidasJugadas, partidasGanadas));
+                aux.Add(new Jugador(id, nombre, partidasJugadas, partidasGanadas));
             }
 
             return aux;
         }
 
-        public override void InicializarParametros_db(Usuario user) 
+        public override void InicializarParametros_db(Jugador user) 
         {
             this.comando.Parameters.AddWithValue("@nombre", user.nombre);
             this.comando.Parameters.AddWithValue("@partidasJugadas", user.partidasJugadas);
@@ -77,7 +77,7 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
-        public override void ModificarParametros_db(Usuario user) 
+        public override void ModificarParametros_db(Jugador user) 
         {
             this.comando.Parameters.AddWithValue("@nombre", user.nombre);
             this.comando.Parameters.AddWithValue("@partidasJugadas", user.partidasJugadas);

@@ -13,7 +13,10 @@ namespace Truco
 {
     public partial class FrmPartida : Form
     {
+        Jugador mano;
         Partida partida;
+        Carta c1;
+        Carta c2;
 
         public FrmPartida(Partida partida)
         {
@@ -25,6 +28,9 @@ namespace Truco
         {
             Random random = new Random();
             List<Bitmap> imagenes = new List<Bitmap>();
+
+            this.label1.Text = this.partida.Jugador2.Nombre;
+            this.label2.Text = this.partida.Jugador1.Nombre;
 
             this.partida.IniciarPartida(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");
             this.partida.RepartirCartas();
@@ -75,6 +81,123 @@ namespace Truco
 
             this.partida.Jugador1.Turno = random.Next(2) == 0;
             this.partida.Jugador2.Turno = !this.partida.Jugador1.Turno;
+
+            if (this.partida.Jugador1.Turno)
+            {
+                mano = this.partida.Jugador1;
+            }
+            else 
+            {
+                mano = this.partida.Jugador2;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Ronda r = new Ronda(this.partida);
+            //Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
+
+            //foreach(KeyValuePair<Jugador, int> item in aux)
+            //{
+            //    MessageBox.Show(item.Key.ToString() + "\nPuntos: " + item.Value.ToString());
+            //}
+            Carta aux = r.ObtenerGanadorMano(c1,c2);
+            if (aux is not null)
+            {
+                if (aux == this.c1)
+                {
+                    this.partida.Jugador1.Turno = true;
+                    this.partida.Jugador2.Turno = false;
+                }
+                else
+                {
+                    this.partida.Jugador1.Turno = false;
+                    this.partida.Jugador2.Turno = true;
+                }
+            }
+            else 
+            {
+                if (this.partida.Jugador1 == mano) 
+                {
+                    this.partida.Jugador1.Turno = true;
+                    this.partida.Jugador2.Turno = false;
+                }
+                else
+                {
+                    this.partida.Jugador1.Turno = false;
+                    this.partida.Jugador2.Turno = true;
+                }
+            }
+        }
+
+        private void j2_1_Click(object sender, EventArgs e)
+        {
+            if(this.partida.Jugador2.Turno)
+            {
+                this.j2_1.Enabled = false;
+                this.j2_1.Size = new Size(75, 100);
+                this.c2 = this.partida.Jugador2.Cartas[0];
+                this.partida.Jugador1.Turno = true;
+                this.partida.Jugador2.Turno = false;
+            }
+        }
+
+        private void j2_2_Click(object sender, EventArgs e)
+        {
+            if (this.partida.Jugador2.Turno)
+            {
+                this.j2_2.Enabled = false;
+                this.j2_2.Size = new Size(75, 100);
+                this.c2 = this.partida.Jugador2.Cartas[1];
+                this.partida.Jugador1.Turno = true;
+                this.partida.Jugador2.Turno = false;
+            }
+        }
+        private void j2_3_Click(object sender, EventArgs e)
+        {
+            if (this.partida.Jugador2.Turno)
+            {
+                this.j2_3.Enabled = false;
+                this.j2_3.Size = new Size(75, 100);
+                this.c2 = this.partida.Jugador2.Cartas[2];
+                this.partida.Jugador1.Turno = true;
+                this.partida.Jugador2.Turno = false;
+            }
+        }
+        private void j1_1_Click(object sender, EventArgs e)
+        {
+            if (this.partida.Jugador1.Turno)
+            {
+                this.j1_1.Enabled = false;
+                this.j1_1.Size = new Size(75, 100);
+                this.c1 = this.partida.Jugador1.Cartas[0];
+                this.partida.Jugador1.Turno = false;
+                this.partida.Jugador2.Turno = true;
+            }
+        }
+
+        private void j1_2_Click(object sender, EventArgs e)
+        {
+            if (this.partida.Jugador1.Turno)
+            {
+                this.j1_2.Enabled = false;
+                this.j1_2.Size = new Size(75, 100);
+                this.c1 = this.partida.Jugador1.Cartas[1];
+                this.partida.Jugador1.Turno = false;
+                this.partida.Jugador2.Turno = true;
+            }
+        }
+
+        private void j1_3_Click(object sender, EventArgs e)
+        {
+            if (this.partida.Jugador1.Turno)
+            {
+                this.j1_3.Enabled = false;
+                this.j1_3.Size = new Size(75, 100);
+                this.c1 = this.partida.Jugador1.Cartas[2];
+                this.partida.Jugador1.Turno = false;
+                this.partida.Jugador2.Turno = true;
+            }
         }
     }
 }

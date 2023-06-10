@@ -11,7 +11,7 @@ namespace Entidades
         int id;
         private Partida partida;
 
-        public Sala(Usuario j1, Usuario j2) 
+        public Sala(Jugador j1, Jugador j2) 
         {
             this.partida = new Partida(j1, j2);
         }

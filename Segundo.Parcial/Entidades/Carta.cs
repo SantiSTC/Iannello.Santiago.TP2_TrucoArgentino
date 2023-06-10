@@ -28,6 +28,16 @@ namespace Entidades
             return a.valorEnvido < b.valorEnvido;
         }
 
+        public static bool operator ==(Carta a, Carta b) 
+        {
+            return a.palo == b.palo;
+        }
+
+        public static bool operator !=(Carta a, Carta b) 
+        {
+            return !(a == b);
+        }
+
         public override string ToString()
         {
             return $"Palo: {this.palo} - Numero: {this.numero}\n";
