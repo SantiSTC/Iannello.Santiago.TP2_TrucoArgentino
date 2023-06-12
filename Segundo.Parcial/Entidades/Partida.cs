@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,38 +24,51 @@ namespace Entidades
         public int PtsJugador1 { get { return this.ptsJugador1; } set { this.ptsJugador1 = value; } }
         public int PtsJugador2 { get { return this.ptsJugador2; } set { this.ptsJugador2 = value; } }
 
+        public Partida() 
+        {
+            this.jugador1 = new Jugador();
+            this.jugador2 = new Jugador();
+            this.enCurso = false;
+        }
+
         public Partida(Jugador j1, Jugador j2)
         {
             this.jugador1 = j1;
             this.jugador2 = j2;
             this.enCurso = false;
         }
-        public Partida(int id, Jugador j1, Jugador j2, bool enCurso)
+
+        public Partida(int id, Jugador j1, Jugador j2, int ptsJugador1, int ptsJugador2, bool enCurso)
         {
             this.id = id;
             this.jugador1 = j1;
             this.jugador2 = j2;
+            this.ptsJugador1 = ptsJugador1;
+            this.ptsJugador2 = ptsJugador2;
             this.enCurso = enCurso;
         }
 
-        public override List<Partida> CrearLista()
+        protected override List<Partida> CrearLista()
         {
             List<Partida> aux = new List<Partida>();
+            Jugador manejador = new Jugador();
 
             while (lector.Read())
             {
                 int id = (int)lector["id"];
-                Jugador jugador1 = (Jugador)lector["jugador1"];
-                Jugador jugador2 = (Jugador)lector["jugador2"];
+                Jugador jugador1 = manejador.ObtenerDatos("usuarios", (int)lector["idJugador1"]);
+                Jugador jugador2 = manejador.ObtenerDatos("usuarios", (int)lector["idJugador2"]);
+                int ptsJugador1 = (int)lector["ptsJugador1"];
+                int ptsJugador2 = (int)lector["ptsJugador2"];
                 bool enCurso = (bool)lector["enCurso"];
 
-                aux.Add(new Partida(id, jugador1, jugador2, enCurso));
+                aux.Add(new Partida(id, jugador1, jugador2, ptsJugador1, ptsJugador2, enCurso));
             }
 
             return aux;
         }
 
-        public override void InicializarParametros_db(Partida partida)
+        protected override void InicializarParametros_db(Partida partida)
         {
             this.comando.Parameters.AddWithValue("@jugador1", partida.jugador1);
             this.comando.Parameters.AddWithValue("@jugador2", partida.jugador2);
@@ -65,7 +79,7 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
-        public override void ModificarParametros_db(Partida partida) 
+        protected override void ModificarParametros_db(Partida partida) 
         {
             this.comando.Parameters.AddWithValue("@jugador1", partida.jugador1);
             this.comando.Parameters.AddWithValue("@jugador2", partida.jugador2);
@@ -74,6 +88,26 @@ namespace Entidades
             string comando = $"UPDATE partidas SET jugador1 = @jugador1, jugador2 = @jugador2, enCurso = @enCurso WHERE id = {partida.id}";
 
             this.comando.CommandText = comando;
+        }
+
+        protected override Partida CrearObjeto() 
+        {
+            Partida aux = new Partida();
+            Jugador manejador = new Jugador();
+
+            while (lector.Read())
+            {
+                int id = (int)lector["id"];
+                Jugador jugador1 = manejador.ObtenerDatos("usuarios", (int)lector["idJugador1"]);
+                Jugador jugador2 = manejador.ObtenerDatos("usuarios", (int)lector["idJugador2"]);
+                int ptsJugador1 = (int)lector["ptsJugador1"];
+                int ptsJugador2 = (int)lector["ptsJugador2"];
+                bool enCurso = (bool)lector["enCurso"];
+
+                aux = new Partida(id, jugador1, jugador2, ptsJugador1, ptsJugador2, enCurso);
+            }
+
+            return aux;
         }
 
         public void IniciarPartida(string path) 
@@ -107,7 +141,7 @@ namespace Entidades
                 int index = random.Next(0, 40);
                 aux = this.mazo[index];
 
-                while (jugador1.Cartas.Contains(aux) && jugador2.Cartas.Contains(aux))
+                while (jugador1.Cartas.Contains(aux) || jugador2.Cartas.Contains(aux))
                 {
                     index = random.Next(0, 40);
                     aux = this.mazo[index];
@@ -115,8 +149,11 @@ namespace Entidades
 
                 jugador2.Cartas.Add(aux);
             }
+        }
 
-
+        public override string ToString()
+        {
+            return $"{this.id} - {this.enCurso} \n{this.jugador1} - {this.ptsJugador1}\n{this.jugador2} - {this.ptsJugador2}";
         }
 
 

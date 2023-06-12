@@ -15,9 +15,10 @@ namespace Entidades
         protected SqlCommand? comando;
         protected SqlDataReader? lector;
 
-        public abstract List<T> CrearLista();
-        public abstract void InicializarParametros_db(T item);
-        public abstract void ModificarParametros_db(T item);
+        protected abstract List<T> CrearLista();
+        protected abstract T CrearObjeto();
+        protected abstract void InicializarParametros_db(T item);
+        protected abstract void ModificarParametros_db(T item);
 
         static ConexionSQL() 
         {
@@ -89,6 +90,49 @@ namespace Entidades
             }
 
             return lista;
+        }
+
+        public T ObtenerDatos(string nombreTabla, int id) 
+        {
+            T? item = default(T);
+
+            try
+            {
+                if (this.ProbarConexion())
+                {
+                    this.comando = new SqlCommand();
+
+                    this.comando.CommandType = CommandType.Text;
+
+                    this.comando.Parameters.AddWithValue("@id", id);
+                    //this.comando.Parameters.AddWithValue("@nombreTabla", nombreTabla);
+
+                    this.comando.CommandText = $"SELECT * FROM {nombreTabla} WHERE id = @id";
+                    this.comando.Connection = this.conexion;
+
+                    this.conexion.Open();
+
+                    this.lector = this.comando.ExecuteReader();
+
+                    item = this.CrearObjeto();
+
+                    this.lector.Close();
+
+                }
+            }
+            catch
+            {
+                return item; 
+            }
+            finally
+            {
+                if (this.conexion.State == ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+
+            return item;
         }
 
         public bool AgregarDatos(T item) 
@@ -202,6 +246,7 @@ namespace Entidades
 
             return retorno;
         }
+
     }
 }
 

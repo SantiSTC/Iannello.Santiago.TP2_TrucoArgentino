@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,7 +50,7 @@ namespace Entidades
             this.partidasGanadas = partidasGanadas;
         }
 
-        public override List<Jugador> CrearLista() 
+        protected override List<Jugador> CrearLista() 
         {
             List<Jugador> aux = new List<Jugador>();
 
@@ -66,7 +67,7 @@ namespace Entidades
             return aux;
         }
 
-        public override void InicializarParametros_db(Jugador user) 
+        protected override void InicializarParametros_db(Jugador user) 
         {
             this.comando.Parameters.AddWithValue("@nombre", user.nombre);
             this.comando.Parameters.AddWithValue("@partidasJugadas", user.partidasJugadas);
@@ -77,7 +78,7 @@ namespace Entidades
             this.comando.CommandText = comando;
         }
 
-        public override void ModificarParametros_db(Jugador user) 
+        protected override void ModificarParametros_db(Jugador user) 
         {
             this.comando.Parameters.AddWithValue("@nombre", user.nombre);
             this.comando.Parameters.AddWithValue("@partidasJugadas", user.partidasJugadas);
@@ -86,6 +87,23 @@ namespace Entidades
             string comando = $"UPDATE usuarios SET nombre = @nombre, partidasJugadas = @partidasJugadas, partidasGanadas = @partidasGanadas WHERE id = {user.id}";
         
             this.comando.CommandText = comando;
+        }
+
+        protected override Jugador CrearObjeto()
+        {
+            Jugador aux = new Jugador();
+
+            while (lector.Read())
+            {
+                int id = (int)lector["id"];
+                string nombre = lector["nombre"].ToString();
+                int partidasJugadas = (int)lector["partidasJugadas"];
+                int partidasGanadas = (int)lector["partidasGanadas"];
+
+                aux = new Jugador(id, nombre, partidasJugadas, partidasGanadas);
+            }
+
+            return aux;
         }
 
         public override string ToString()

@@ -13,10 +13,12 @@ namespace Truco
 {
     public partial class FrmPartida : Form
     {
-        Jugador mano;
-        Partida partida;
-        Carta c1;
-        Carta c2;
+        private Jugador mano;
+        private Partida partida;
+        private Carta c1;
+        private Carta c2;
+
+        private event EventHandler FinDeMano;
 
         public FrmPartida(Partida partida)
         {
@@ -94,40 +96,46 @@ namespace Truco
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Ronda r = new Ronda(this.partida);
-            //Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
+            Partida p = new Partida().ObtenerDatos("partidas", 1);
+            MessageBox.Show(p.ToString());
 
-            //foreach(KeyValuePair<Jugador, int> item in aux)
+            //Ronda r = new Ronda(this.partida);
+
+            ////Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
+
+            ////foreach(KeyValuePair<Jugador, int> item in aux)
+            ////{
+            ////    MessageBox.Show(item.Key.ToString() + "\nPuntos: " + item.Value.ToString());
+            ////}
+
+            //Carta aux = r.ObtenerGanadorMano(this.c1,this.c2);
+
+            //if (aux is not null)
             //{
-            //    MessageBox.Show(item.Key.ToString() + "\nPuntos: " + item.Value.ToString());
+            //    if (aux == this.c1)
+            //    {
+            //        this.partida.Jugador1.Turno = true;
+            //        this.partida.Jugador2.Turno = false;
+            //    }
+            //    else
+            //    {
+            //        this.partida.Jugador1.Turno = false;
+            //        this.partida.Jugador2.Turno = true;
+            //    }
             //}
-            Carta aux = r.ObtenerGanadorMano(c1,c2);
-            if (aux is not null)
-            {
-                if (aux == this.c1)
-                {
-                    this.partida.Jugador1.Turno = true;
-                    this.partida.Jugador2.Turno = false;
-                }
-                else
-                {
-                    this.partida.Jugador1.Turno = false;
-                    this.partida.Jugador2.Turno = true;
-                }
-            }
-            else 
-            {
-                if (this.partida.Jugador1 == mano) 
-                {
-                    this.partida.Jugador1.Turno = true;
-                    this.partida.Jugador2.Turno = false;
-                }
-                else
-                {
-                    this.partida.Jugador1.Turno = false;
-                    this.partida.Jugador2.Turno = true;
-                }
-            }
+            //else 
+            //{
+            //    if (this.partida.Jugador1 == this.mano) 
+            //    {
+            //        this.partida.Jugador1.Turno = true;
+            //        this.partida.Jugador2.Turno = false;
+            //    }
+            //    else
+            //    {
+            //        this.partida.Jugador1.Turno = false;
+            //        this.partida.Jugador2.Turno = true;
+            //    }
+            //}
         }
 
         private void j2_1_Click(object sender, EventArgs e)
@@ -199,5 +207,7 @@ namespace Truco
                 this.partida.Jugador2.Turno = true;
             }
         }
+
+
     }
 }

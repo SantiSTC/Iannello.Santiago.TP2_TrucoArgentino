@@ -10,7 +10,7 @@ namespace Entidades
     {
         private EPalos palo;
         private int numero;
-        private int valorTruco;//13
+        private int valorTruco;
         private int valorEnvido;
 
         public EPalos Palo { get { return this.palo; } set { this.palo = value; } }

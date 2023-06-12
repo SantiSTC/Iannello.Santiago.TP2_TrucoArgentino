@@ -13,12 +13,11 @@ namespace Truco
 {
     public partial class FrmMenu : Form
     {
-        private List<Sala> salasDeJuego;
         public FrmMenu()
         {
             InitializeComponent();
 
-            salasDeJuego = new List<Sala>();
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
