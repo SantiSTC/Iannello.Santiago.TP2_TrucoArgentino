@@ -108,7 +108,7 @@ namespace Entidades
 
         public Carta ObtenerGanadorMano(Carta c1, Carta c2)
         {
-            Carta aux = new Carta();
+            Carta aux = null;
 
             if(c1.ValorTruco > c2.ValorTruco)
             {

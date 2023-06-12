@@ -92,50 +92,31 @@ namespace Truco
             {
                 mano = this.partida.Jugador2;
             }
+
+            ////////////////////////////////////////////////////////////
+
+            this.FinDeMano += this.GanadorDeMano;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Partida p = new Partida().ObtenerDatos("partidas", 1);
-            MessageBox.Show(p.ToString());
-
             //Ronda r = new Ronda(this.partida);
 
-            ////Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
+            //Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
+            string cadena = "";
 
-            ////foreach(KeyValuePair<Jugador, int> item in aux)
-            ////{
-            ////    MessageBox.Show(item.Key.ToString() + "\nPuntos: " + item.Value.ToString());
-            ////}
+            (int, int) valores;
 
-            //Carta aux = r.ObtenerGanadorMano(this.c1,this.c2);
+            foreach (KeyValuePair<ETantos, (int, int)> item in this.partida.ValoresEnvido)
+            {
+                valores = this.partida.ValoresEnvido[item.Key];
 
-            //if (aux is not null)
-            //{
-            //    if (aux == this.c1)
-            //    {
-            //        this.partida.Jugador1.Turno = true;
-            //        this.partida.Jugador2.Turno = false;
-            //    }
-            //    else
-            //    {
-            //        this.partida.Jugador1.Turno = false;
-            //        this.partida.Jugador2.Turno = true;
-            //    }
-            //}
-            //else 
-            //{
-            //    if (this.partida.Jugador1 == this.mano) 
-            //    {
-            //        this.partida.Jugador1.Turno = true;
-            //        this.partida.Jugador2.Turno = false;
-            //    }
-            //    else
-            //    {
-            //        this.partida.Jugador1.Turno = false;
-            //        this.partida.Jugador2.Turno = true;
-            //    }
-            //}
+                cadena += item.Key.ToString() + "\nQuiero: " + valores.Item2.ToString() + "\nNo Quiero: " + valores.Item1.ToString() + "\n";
+            }
+
+            MessageBox.Show(cadena);
+
+            //Hacer lo mismo pero con truco
         }
 
         private void j2_1_Click(object sender, EventArgs e)
@@ -147,6 +128,8 @@ namespace Truco
                 this.c2 = this.partida.Jugador2.Cartas[0];
                 this.partida.Jugador1.Turno = true;
                 this.partida.Jugador2.Turno = false;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
 
@@ -159,6 +142,8 @@ namespace Truco
                 this.c2 = this.partida.Jugador2.Cartas[1];
                 this.partida.Jugador1.Turno = true;
                 this.partida.Jugador2.Turno = false;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
         private void j2_3_Click(object sender, EventArgs e)
@@ -170,6 +155,8 @@ namespace Truco
                 this.c2 = this.partida.Jugador2.Cartas[2];
                 this.partida.Jugador1.Turno = true;
                 this.partida.Jugador2.Turno = false;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
         private void j1_1_Click(object sender, EventArgs e)
@@ -181,6 +168,8 @@ namespace Truco
                 this.c1 = this.partida.Jugador1.Cartas[0];
                 this.partida.Jugador1.Turno = false;
                 this.partida.Jugador2.Turno = true;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
 
@@ -193,6 +182,8 @@ namespace Truco
                 this.c1 = this.partida.Jugador1.Cartas[1];
                 this.partida.Jugador1.Turno = false;
                 this.partida.Jugador2.Turno = true;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
 
@@ -205,9 +196,52 @@ namespace Truco
                 this.c1 = this.partida.Jugador1.Cartas[2];
                 this.partida.Jugador1.Turno = false;
                 this.partida.Jugador2.Turno = true;
+
+                this.FinDeMano?.Invoke(sender, e);
             }
         }
 
+        private void GanadorDeMano(object sender, EventArgs e) 
+        {
+            Carta aux = new Carta();
 
+            if (this.c1 is not null && this.c2 is not null) 
+            {
+                aux = new Ronda(this.partida).ObtenerGanadorMano(this.c1, this.c2);
+
+                if (aux is not null)
+                {
+                    if (aux == this.c1 && aux.Numero == this.c1.Numero)
+                    {
+                        this.partida.Jugador1.Turno = true;
+                        this.partida.Jugador2.Turno = false;
+                    }
+                    else
+                    {
+                        if (aux.Numero == this.c2.Numero) 
+                        {
+                            this.partida.Jugador1.Turno = false;
+                            this.partida.Jugador2.Turno = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.partida.Jugador1 == this.mano)
+                    {
+                        this.partida.Jugador1.Turno = true;
+                        this.partida.Jugador2.Turno = false;
+                    }
+                    else
+                    {
+                        this.partida.Jugador1.Turno = false;
+                        this.partida.Jugador2.Turno = true;
+                    }
+                }
+
+                this.c1 = null;
+                this.c2 = null;
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace Entidades
         private int ptsJugador2;
         private bool enCurso;
         private List<Carta> mazo;
+        private Dictionary<ETantos, (int, int)> valoresEnvido;
 
         public int ID { get { return this.id; } }
         public Jugador Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
@@ -23,12 +24,14 @@ namespace Entidades
         public bool EnCurso { get { return this.enCurso; } set { this.enCurso = value; } }
         public int PtsJugador1 { get { return this.ptsJugador1; } set { this.ptsJugador1 = value; } }
         public int PtsJugador2 { get { return this.ptsJugador2; } set { this.ptsJugador2 = value; } }
+        public Dictionary<ETantos, (int, int)> ValoresEnvido { get { return this.valoresEnvido; } set { this.valoresEnvido = value; } }
 
         public Partida() 
         {
             this.jugador1 = new Jugador();
             this.jugador2 = new Jugador();
             this.enCurso = false;
+            valoresEnvido = new Dictionary<ETantos, (int, int)>();
         }
 
         public Partida(Jugador j1, Jugador j2)
@@ -36,6 +39,7 @@ namespace Entidades
             this.jugador1 = j1;
             this.jugador2 = j2;
             this.enCurso = false;
+            valoresEnvido = new Dictionary<ETantos, (int, int)>();
         }
 
         public Partida(int id, Jugador j1, Jugador j2, int ptsJugador1, int ptsJugador2, bool enCurso)
@@ -46,6 +50,7 @@ namespace Entidades
             this.ptsJugador1 = ptsJugador1;
             this.ptsJugador2 = ptsJugador2;
             this.enCurso = enCurso;
+            valoresEnvido = new Dictionary<ETantos, (int, int)>();
         }
 
         protected override List<Partida> CrearLista()
@@ -116,6 +121,7 @@ namespace Entidades
             this.jugador1.PartidasJugadas += 1;
             this.jugador2.PartidasJugadas += 1;
             this.mazo = Deserializacion.Deserializar(path);
+            this.valoresEnvido = Partida.AsignarValoresEnvido();
         }
 
         public void RepartirCartas() 
@@ -157,6 +163,48 @@ namespace Entidades
         }
 
 
+        private static Dictionary<ETantos, (int, int)> AsignarValoresEnvido() 
+        {
+            Dictionary<ETantos, (int, int)> aux = new Dictionary<ETantos, (int, int)>();
 
+            foreach (ETantos tanto in Enum.GetValues(typeof(ETantos))) 
+            {
+                switch (tanto.ToString()) 
+                {
+                    case "Envido":
+                        aux.Add(tanto, (1, 2));
+                        break;
+                    case "RealEnvido":
+                        aux.Add(tanto, (1, 3));
+                        break;
+                    case "FaltaEnvido":
+                        aux.Add(tanto, (1, 30));
+                        break;
+                    case "Envido_Envido":
+                        aux.Add(tanto, (2, 4));
+                        break;
+                    case "Envido_RealEnvido":
+                        aux.Add(tanto, (2, 5));
+                        break;
+                    case "Envido_FaltaEnvido":
+                        aux.Add(tanto, (2, 30));
+                        break;
+                    case "RealEnvido_FaltaEnvido":
+                        aux.Add(tanto, (3, 30));
+                        break;
+                    case "Envido_Envido_RealEnvido":
+                        aux.Add(tanto, (4, 7));
+                        break;
+                    case "Envido_RealEnvido_FaltaEnvido":
+                        aux.Add(tanto, (5, 30));
+                        break;
+                    case "Envido_Envido_RealEnvido_FaltaEnvido":
+                        aux.Add(tanto, (7, 30));
+                        break;
+                }
+            }
+
+            return aux;
+        }
     }
 }
