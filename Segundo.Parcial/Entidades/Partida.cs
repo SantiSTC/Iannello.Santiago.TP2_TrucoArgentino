@@ -17,6 +17,7 @@ namespace Entidades
         private bool enCurso;
         private List<Carta> mazo;
         private Dictionary<ETantos, (int, int)> valoresEnvido;
+        private Dictionary<ETruco, (int, int)> valoresTruco;
 
         public int ID { get { return this.id; } }
         public Jugador Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
@@ -25,6 +26,7 @@ namespace Entidades
         public int PtsJugador1 { get { return this.ptsJugador1; } set { this.ptsJugador1 = value; } }
         public int PtsJugador2 { get { return this.ptsJugador2; } set { this.ptsJugador2 = value; } }
         public Dictionary<ETantos, (int, int)> ValoresEnvido { get { return this.valoresEnvido; } set { this.valoresEnvido = value; } }
+        public Dictionary<ETruco, (int, int)> ValoresTruco { get { return this.valoresTruco; } set { this.valoresTruco = value; } }
 
         public Partida() 
         {
@@ -32,6 +34,7 @@ namespace Entidades
             this.jugador2 = new Jugador();
             this.enCurso = false;
             valoresEnvido = new Dictionary<ETantos, (int, int)>();
+            valoresTruco = new Dictionary<ETruco, (int, int)>();
         }
 
         public Partida(Jugador j1, Jugador j2)
@@ -40,6 +43,7 @@ namespace Entidades
             this.jugador2 = j2;
             this.enCurso = false;
             valoresEnvido = new Dictionary<ETantos, (int, int)>();
+            valoresTruco = new Dictionary<ETruco, (int, int)>();
         }
 
         public Partida(int id, Jugador j1, Jugador j2, int ptsJugador1, int ptsJugador2, bool enCurso)
@@ -51,6 +55,7 @@ namespace Entidades
             this.ptsJugador2 = ptsJugador2;
             this.enCurso = enCurso;
             valoresEnvido = new Dictionary<ETantos, (int, int)>();
+            valoresTruco = new Dictionary<ETruco, (int, int)>();
         }
 
         protected override List<Partida> CrearLista()
@@ -122,6 +127,7 @@ namespace Entidades
             this.jugador2.PartidasJugadas += 1;
             this.mazo = Deserializacion.Deserializar(path);
             this.valoresEnvido = Partida.AsignarValoresEnvido();
+            this.valoresTruco = Partida.AsignarValoresTruco();
         }
 
         public void RepartirCartas() 
@@ -200,6 +206,29 @@ namespace Entidades
                         break;
                     case "Envido_Envido_RealEnvido_FaltaEnvido":
                         aux.Add(tanto, (7, 30));
+                        break;
+                }
+            }
+
+            return aux;
+        }
+
+        private static Dictionary<ETruco, (int, int)> AsignarValoresTruco() 
+        {
+            Dictionary<ETruco, (int, int)> aux = new Dictionary<ETruco, (int, int)>();
+
+            foreach (ETruco valor in Enum.GetValues(typeof(ETruco))) 
+            {
+                switch(valor.ToString()) 
+                {
+                    case "Truco":
+                        aux.Add(valor, (1, 2));
+                        break;
+                    case "Retruco":
+                        aux.Add(valor, (2, 3));
+                        break;
+                    case "ValeCuatro":
+                        aux.Add(valor, (3, 4));
                         break;
                 }
             }
