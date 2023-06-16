@@ -24,6 +24,7 @@ namespace Truco
         {
             //Usuario u1 = new Usuario();
             string cadena = "";
+            Jugador manejador = new Jugador();
 
             //foreach (Usuario u in u1.ObtenerDatos("usuarios")) 
             //{
@@ -80,9 +81,9 @@ namespace Truco
             //{
             //    cadena += c.ToString();
             //}
-
-            Jugador j1 = new Jugador("Juan");
-            Jugador j2 = new Jugador("Rafa");
+            List<Jugador> lista = manejador.ObtenerDatos("usuarios");
+            Jugador j1 = lista[0];
+            Jugador j2 = lista[1];
             Partida p = new Partida(j1, j2);
 
             //p.IniciarPartida(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");
@@ -102,8 +103,6 @@ namespace Truco
 
             FrmPartida fm = new FrmPartida(p);
             fm.Show();
-
-
         }
 
         private void FrmMenu_Load(object sender, EventArgs e)

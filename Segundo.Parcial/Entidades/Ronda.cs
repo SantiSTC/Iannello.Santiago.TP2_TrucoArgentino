@@ -102,7 +102,7 @@ namespace Entidades
                 aux = this.partida.Jugador2;
                 diccionario.Add(aux, ptsJ2);
             }
-
+            
             return diccionario;
         }
 

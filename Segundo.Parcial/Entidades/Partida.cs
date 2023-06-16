@@ -16,8 +16,8 @@ namespace Entidades
         private int ptsJugador2;
         private bool enCurso;
         private List<Carta> mazo;
-        private Dictionary<ETantos, (int, int)> valoresEnvido;
-        private Dictionary<ETruco, (int, int)> valoresTruco;
+        private Dictionary<ETantos?, (int, int)> valoresEnvido;
+        private Dictionary<ETruco?, (int, int)> valoresTruco;
 
         public int ID { get { return this.id; } }
         public Jugador Jugador1 { get { return this.jugador1; } set { this.jugador1 = value; } }
@@ -25,16 +25,16 @@ namespace Entidades
         public bool EnCurso { get { return this.enCurso; } set { this.enCurso = value; } }
         public int PtsJugador1 { get { return this.ptsJugador1; } set { this.ptsJugador1 = value; } }
         public int PtsJugador2 { get { return this.ptsJugador2; } set { this.ptsJugador2 = value; } }
-        public Dictionary<ETantos, (int, int)> ValoresEnvido { get { return this.valoresEnvido; } set { this.valoresEnvido = value; } }
-        public Dictionary<ETruco, (int, int)> ValoresTruco { get { return this.valoresTruco; } set { this.valoresTruco = value; } }
+        public Dictionary<ETantos?, (int, int)> ValoresEnvido { get { return this.valoresEnvido; } set { this.valoresEnvido = value; } }
+        public Dictionary<ETruco?, (int, int)> ValoresTruco { get { return this.valoresTruco; } set { this.valoresTruco = value; } }
 
         public Partida() 
         {
             this.jugador1 = new Jugador();
             this.jugador2 = new Jugador();
             this.enCurso = false;
-            valoresEnvido = new Dictionary<ETantos, (int, int)>();
-            valoresTruco = new Dictionary<ETruco, (int, int)>();
+            valoresEnvido = new Dictionary<ETantos?, (int, int)>();
+            valoresTruco = new Dictionary<ETruco?, (int, int)>();
         }
 
         public Partida(Jugador j1, Jugador j2)
@@ -42,8 +42,8 @@ namespace Entidades
             this.jugador1 = j1;
             this.jugador2 = j2;
             this.enCurso = false;
-            valoresEnvido = new Dictionary<ETantos, (int, int)>();
-            valoresTruco = new Dictionary<ETruco, (int, int)>();
+            valoresEnvido = new Dictionary<ETantos?, (int, int)>();
+            valoresTruco = new Dictionary<ETruco?, (int, int)>();
         }
 
         public Partida(int id, Jugador j1, Jugador j2, int ptsJugador1, int ptsJugador2, bool enCurso)
@@ -54,8 +54,8 @@ namespace Entidades
             this.ptsJugador1 = ptsJugador1;
             this.ptsJugador2 = ptsJugador2;
             this.enCurso = enCurso;
-            valoresEnvido = new Dictionary<ETantos, (int, int)>();
-            valoresTruco = new Dictionary<ETruco, (int, int)>();
+            valoresEnvido = new Dictionary<ETantos?, (int, int)>();
+            valoresTruco = new Dictionary<ETruco?, (int, int)>();
         }
 
         protected override List<Partida> CrearLista()
@@ -169,9 +169,9 @@ namespace Entidades
         }
 
 
-        private static Dictionary<ETantos, (int, int)> AsignarValoresEnvido() 
+        private static Dictionary<ETantos?, (int, int)> AsignarValoresEnvido() 
         {
-            Dictionary<ETantos, (int, int)> aux = new Dictionary<ETantos, (int, int)>();
+            Dictionary<ETantos?, (int, int)> aux = new Dictionary<ETantos?, (int, int)>();
 
             foreach (ETantos tanto in Enum.GetValues(typeof(ETantos))) 
             {
@@ -201,6 +201,9 @@ namespace Entidades
                     case "Envido_Envido_RealEnvido":
                         aux.Add(tanto, (4, 7));
                         break;
+                    case "Envido_Envido_FaltaEnvido":
+                        aux.Add(tanto, (4, 30));
+                        break;
                     case "Envido_RealEnvido_FaltaEnvido":
                         aux.Add(tanto, (5, 30));
                         break;
@@ -213,11 +216,11 @@ namespace Entidades
             return aux;
         }
 
-        private static Dictionary<ETruco, (int, int)> AsignarValoresTruco() 
+        private static Dictionary<ETruco?, (int, int)> AsignarValoresTruco() 
         {
-            Dictionary<ETruco, (int, int)> aux = new Dictionary<ETruco, (int, int)>();
+            Dictionary<ETruco?, (int, int)> aux = new Dictionary<ETruco?, (int, int)>();
 
-            foreach (ETruco valor in Enum.GetValues(typeof(ETruco))) 
+            foreach (ETruco? valor in Enum.GetValues(typeof(ETruco))) 
             {
                 switch(valor.ToString()) 
                 {

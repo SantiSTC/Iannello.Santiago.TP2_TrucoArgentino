@@ -16,13 +16,16 @@ public enum ETantos
     Envido_FaltaEnvido,
     RealEnvido_FaltaEnvido,
     Envido_Envido_RealEnvido,
+    Envido_Envido_FaltaEnvido,
     Envido_RealEnvido_FaltaEnvido,
     Envido_Envido_RealEnvido_FaltaEnvido
 }
 
 public enum ETruco
 {
+    Ninguno,
     Truco,
     Retruco,
     ValeCuatro
 }
+

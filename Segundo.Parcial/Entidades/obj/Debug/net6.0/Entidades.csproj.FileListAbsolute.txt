@@ -22,3 +22,4 @@ C:\Users\santi\source\repos\Segundo.Parcial\Entidades\obj\Debug\net6.0\Entidades
 C:\Users\santi\source\repos\Segundo.Parcial\Entidades\obj\Debug\net6.0\refint\Entidades.dll
 C:\Users\santi\source\repos\Segundo.Parcial\Entidades\obj\Debug\net6.0\Entidades.pdb
 C:\Users\santi\source\repos\Segundo.Parcial\Entidades\obj\Debug\net6.0\ref\Entidades.dll
+C:\Users\Santiago\source\repos\Segundo.Parcial\Entidades\obj\Debug\net6.0\Entidades.csproj.ResolveComReference.cache
