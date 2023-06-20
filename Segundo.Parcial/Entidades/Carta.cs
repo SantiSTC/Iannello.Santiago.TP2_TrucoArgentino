@@ -18,6 +18,14 @@ namespace Entidades
         public int ValorTruco { get {  return this.valorTruco; } set { this.valorTruco = value; } }
         public int ValorEnvido { get {  return this.valorEnvido; } set { this.valorEnvido = value; } }
 
+        public Carta(EPalos palo, int numero, int valorTruco, int valorEnvido)
+        {
+            Palo = palo;
+            Numero = numero;
+            ValorTruco = valorTruco;
+            ValorEnvido = valorEnvido;
+        }
+
         public static bool operator >(Carta a, Carta b) 
         {
             return a.valorEnvido > b.valorEnvido;

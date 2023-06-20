@@ -13,101 +13,77 @@ namespace Truco
 {
     public partial class FrmMenu : Form
     {
-        public FrmMenu()
+        Jugador jugador1;
+        private delegate void Delegado();////
+
+        public FrmMenu(Jugador jugador)
         {
             InitializeComponent();
-
-          
+            this.jugador1 = jugador;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Usuario u1 = new Usuario();
-            string cadena = "";
-            Jugador manejador = new Jugador();
 
-            //foreach (Usuario u in u1.ObtenerDatos("usuarios")) 
-            //{
-            //    cadena += u.ToString();
-            //}
-
-            //MessageBox.Show($"{cadena}");
-
-            //if (u1.AgregarDatos(new Usuario("Jorge", 100, 43)))
-            //{
-            //    cadena = "";
-
-            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
-            //    {
-            //        cadena += u.ToString();
-            //    }
-
-            //    MessageBox.Show($"{cadena}");
-            //}
-
-            //if (u1.EliminarDatos(2, "usuarios")) 
-            //{
-            //    cadena = "";
-
-            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
-            //    {
-            //        cadena += u.ToString();
-            //    }
-
-            //    MessageBox.Show($"{cadena}");
-            //}
-            //else 
-            //{
-            //    MessageBox.Show($"ERROR");
-            //}
-
-            //if (u1.ModificarDatos(new Usuario(1, "Mario", 100, 43)))
-            //{
-            //    cadena = "";
-
-            //    foreach (Usuario u in u1.ObtenerDatos("usuarios"))
-            //    {
-            //        cadena += u.ToString();
-            //    }
-
-            //    MessageBox.Show($"{cadena}");
-            //}
-
-            //List<Carta> lista = new List<Carta>();
-
-            //lista = Deserializacion.Deserializar(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");
-
-            //foreach(Carta c in lista) 
-            //{
-            //    cadena += c.ToString();
-            //}
-            List<Jugador> lista = manejador.ObtenerDatos("usuarios");
-            Jugador j1 = lista[0];
-            Jugador j2 = lista[1];
-            Partida p = new Partida(j1, j2);
-
-            //p.IniciarPartida(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");
-            //p.RepartirCartas();
-
-            //foreach (Carta item in p.Jugador1.Cartas)
-            //{
-            //    cadena += item.ToString();
-            //}
-            //cadena += "\n\n";
-            //foreach (Carta item in p.Jugador2.Cartas)
-            //{
-            //    cadena += item.ToString();
-            //}
-
-            //MessageBox.Show($"{cadena}");
-
-            FrmPartida fm = new FrmPartida(p);
-            fm.Show();
         }
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPartidas_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => { this.MostrarFrmListarPartida(); });
+        }
+
+        private void MostrarFrmListarPartida()//////////////
+        {
+            Delegado callback;
+
+            if (this.InvokeRequired)
+            {
+                callback = new Delegado(MostrarFrmListarPartida);
+                this.BeginInvoke(callback);
+            }
+            else
+            {
+                this.Hide();
+                FrmListarPartida fm = new FrmListarPartida();
+                fm.StartPosition = FormStartPosition.CenterScreen;
+                fm.ShowDialog();
+                if (fm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => { this.MostrarFrmListarJugadores(); });
+        }
+
+        private void MostrarFrmListarJugadores()
+        {
+            Delegado callback;
+
+            if (this.InvokeRequired)
+            {
+                callback = new Delegado(MostrarFrmListarJugadores);
+                this.BeginInvoke(callback);
+            }
+            else
+            {
+                this.Hide();
+                FrmListarJugadores fm = new FrmListarJugadores(new Jugador().ObtenerDatos("usuarios"));
+                fm.StartPosition = FormStartPosition.CenterScreen;
+                fm.ShowDialog();
+                if (fm.DialogResult == DialogResult.Cancel)
+                {
+                    this.Show();
+                }
+            }
         }
     }
 }

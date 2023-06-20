@@ -101,3 +101,7 @@ C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\bin\Debug\net6.0-
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\bin\Debug\net6.0-windows\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\bin\Debug\net6.0-windows\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\bin\Debug\net6.0-windows\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmLogin.resources
+C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmListarPartida.resources
+C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmListarJugadores.resources
+C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmCrearPartida.resources

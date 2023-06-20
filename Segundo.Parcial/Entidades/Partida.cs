@@ -15,7 +15,7 @@ namespace Entidades
         private int ptsJugador1;
         private int ptsJugador2;
         private bool enCurso;
-        private List<Carta> mazo;
+        private List<Carta>? mazo;
         private Dictionary<ETantos?, (int, int)> valoresEnvido;
         private Dictionary<ETruco?, (int, int)> valoresTruco;
 
@@ -41,7 +41,9 @@ namespace Entidades
         {
             this.jugador1 = j1;
             this.jugador2 = j2;
-            this.enCurso = false;
+            this.ptsJugador1 = 0;
+            this.ptsJugador2 = 0;
+            this.enCurso = true;
             valoresEnvido = new Dictionary<ETantos?, (int, int)>();
             valoresTruco = new Dictionary<ETruco?, (int, int)>();
         }
@@ -80,22 +82,26 @@ namespace Entidades
 
         protected override void InicializarParametros_db(Partida partida)
         {
-            this.comando.Parameters.AddWithValue("@jugador1", partida.jugador1);
-            this.comando.Parameters.AddWithValue("@jugador2", partida.jugador2);
+            this.comando.Parameters.AddWithValue("@idJugador1", partida.jugador1.ID);
+            this.comando.Parameters.AddWithValue("@idJugador2", partida.jugador2.ID);
+            this.comando.Parameters.AddWithValue("@ptsJugador1", partida.ptsJugador1);
+            this.comando.Parameters.AddWithValue("@ptsJugador2", partida.ptsJugador2);
             this.comando.Parameters.AddWithValue("@enCurso", partida.enCurso);
             
-            string comando = "INSERT INTO partidas (jugador1, jugador2, enCurso) VALUES(@jugador1, @jugador2, @enCurso)";
+            string comando = "INSERT INTO partidas (idJugador1, idJugador2, ptsJugador1, ptsJugador2, enCurso) VALUES(@idJugador1, @idJugador2, @ptsJugador1, @ptsJugador2, @enCurso)";
 
             this.comando.CommandText = comando;
         }
 
         protected override void ModificarParametros_db(Partida partida) 
         {
-            this.comando.Parameters.AddWithValue("@jugador1", partida.jugador1);
-            this.comando.Parameters.AddWithValue("@jugador2", partida.jugador2);
+            this.comando.Parameters.AddWithValue("@idJugador1", partida.jugador1.ID);
+            this.comando.Parameters.AddWithValue("@idJugador2", partida.jugador2.ID);
+            this.comando.Parameters.AddWithValue("@ptsJugador1", partida.ptsJugador1);
+            this.comando.Parameters.AddWithValue("@ptsJugador2", partida.ptsJugador2);
             this.comando.Parameters.AddWithValue("@enCurso", partida.enCurso);
 
-            string comando = $"UPDATE partidas SET jugador1 = @jugador1, jugador2 = @jugador2, enCurso = @enCurso WHERE id = {partida.id}";
+            string comando = $"UPDATE partidas SET idJugador1 = @idJugador1, idJugador2 = @idJugador2, ptsJugador1 = @ptsJugador1, ptsJugador2 = @ptsJugador2, enCurso = @enCurso WHERE id = {partida.id}";
 
             this.comando.CommandText = comando;
         }
@@ -238,5 +244,9 @@ namespace Entidades
 
             return aux;
         }
+
+
+
+
     }
 }

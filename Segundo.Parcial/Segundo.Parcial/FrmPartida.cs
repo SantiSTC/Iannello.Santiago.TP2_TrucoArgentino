@@ -14,7 +14,7 @@ namespace Truco
 {
     public partial class FrmPartida : Form
     {
-        private bool flag; 
+        private bool flag;
         private Jugador auxEnvido;
         private Jugador? mano;
         private Partida partida;
@@ -25,6 +25,7 @@ namespace Truco
         private ETruco? estadoTruco;
         private ETantos? estadoEnvido;
         private int cartasSobreLaMesa;
+        private bool fueParda;
 
         private event EventHandler? FinDeMano;
         private event EventHandler? BotonPresionado;
@@ -42,6 +43,7 @@ namespace Truco
             this.label2.Text = this.partida.Jugador1.Nombre;
             this.ptsJ1.Text = this.partida.PtsJugador1.ToString();
             this.ptsJ2.Text = this.partida.PtsJugador2.ToString();
+            this.fueParda = false;
 
             this.partida.IniciarPartida(Application.StartupPath + @"\Cartas_Serializadas\cartas.json");
             this.IniciarRonda();
@@ -56,37 +58,9 @@ namespace Truco
             this.partida.Jugador2.CartaTirada += Capturar_Jugador_CartaTirada;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Ronda r = new Ronda(this.partida);
-
-            //Dictionary<Jugador, int> aux = r.ObtenerGanadorEnvido();
-
-            string cadena = "";
-            //(int, int) valores;
-
-            //foreach (KeyValuePair<ETantos?, (int, int)> item in this.partida.ValoresEnvido)
-            //{
-            //    valores = this.partida.ValoresEnvido[item.Key];
-
-            //    cadena += item.Key.ToString() + "\nQuiero: " + valores.Item2.ToString() + "\nNo Quiero: " + valores.Item1.ToString() + "\n";
-            //}
-
-            //cadena += "=====================\n======================\n";
-
-            //foreach (KeyValuePair<ETruco, (int, int)> item in this.partida.ValoresTruco)
-            //{
-            //    valores = this.partida.ValoresTruco[item.Key];
-            //    cadena += item.Key.ToString() + "\nQuiero: " + valores.Item2.ToString() + "\nNo Quiero: " + valores.Item1.ToString() + "\n";
-            //}
-            MessageBox.Show($"J1: {this.partida.PtsJugador1} - J2: {this.partida.PtsJugador2}");
-
-            //MessageBox.Show(cadena);
-        }
-
         private void j2_1_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador2.Turno)
+            if (this.partida.Jugador2.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j2_1.Enabled = false;
                 this.j2_1.Size = new Size(75, 100);
@@ -102,7 +76,7 @@ namespace Truco
 
         private void j2_2_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador2.Turno)
+            if (this.partida.Jugador2.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j2_2.Enabled = false;
                 this.j2_2.Size = new Size(75, 100);
@@ -117,7 +91,7 @@ namespace Truco
         }
         private void j2_3_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador2.Turno)
+            if (this.partida.Jugador2.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j2_3.Enabled = false;
                 this.j2_3.Size = new Size(75, 100);
@@ -132,7 +106,7 @@ namespace Truco
         }
         private void j1_1_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador1.Turno)
+            if (this.partida.Jugador1.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j1_1.Enabled = false;
                 this.j1_1.Size = new Size(75, 100);
@@ -148,7 +122,7 @@ namespace Truco
 
         private void j1_2_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador1.Turno)
+            if (this.partida.Jugador1.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j1_2.Enabled = false;
                 this.j1_2.Size = new Size(75, 100);
@@ -164,7 +138,7 @@ namespace Truco
 
         private void j1_3_Click(object sender, EventArgs e)
         {
-            if (this.partida.Jugador1.Turno)
+            if (this.partida.Jugador1.Turno && !this.estadoEnvido.HasValue)
             {
                 this.j1_3.Enabled = false;
                 this.j1_3.Size = new Size(75, 100);
@@ -236,9 +210,10 @@ namespace Truco
                 }
                 else
                 {
+                    this.fueParda = true;
+
                     if (this.partida.Jugador1 == this.mano)
                     {
-                        this.manosGanadasJ1++;
                         this.partida.Jugador1.Turno = true;
                         this.partida.Jugador2.Turno = false;
 
@@ -248,7 +223,6 @@ namespace Truco
                     }
                     else
                     {
-                        this.manosGanadasJ2++;
                         this.partida.Jugador1.Turno = false;
                         this.partida.Jugador2.Turno = true;
 
@@ -268,7 +242,7 @@ namespace Truco
             }
             else
             {
-                if (this.manosGanadasJ1 == 2 || this.manosGanadasJ2 == 2)
+                if ((this.manosGanadasJ1 == 2 || this.manosGanadasJ2 == 2) || (fueParda && (this.manosGanadasJ1 == 1 || this.manosGanadasJ2 == 1)))
                 {
                     this.FinDeRonda?.Invoke(sender, e);
                 }
@@ -335,6 +309,7 @@ namespace Truco
             this.j2_1.Enabled = true;
             this.j2_2.Enabled = true;
             this.j2_3.Enabled = true;
+            this.fueParda = false;
 
             this.IniciarRonda();
         }
@@ -378,7 +353,7 @@ namespace Truco
                 auxEnvido = this.mano;
                 flag = true;
             }
-            else 
+            else
             {
                 if (auxEnvido == this.partida.Jugador1)
                 {
@@ -389,7 +364,7 @@ namespace Truco
                     auxEnvido = this.partida.Jugador1;
                 }
             }
-            
+
             if (this.cartasSobreLaMesa < 2)
             {
                 if (this.estadoEnvido.HasValue)
@@ -631,7 +606,7 @@ namespace Truco
                 {
                     this.manosGanadasJ1 = 2;
                 }
-                else 
+                else
                 {
                     this.manosGanadasJ2 = 2;
                 }
@@ -791,6 +766,11 @@ namespace Truco
             }
 
             return new Jugador();
+        }
+
+        private void FrmPartida_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            new Partida().ModificarDatos(this.partida);
         }
     }
 

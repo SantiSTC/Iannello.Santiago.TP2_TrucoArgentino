@@ -18,7 +18,6 @@ namespace Entidades
         public static List<Carta> Deserializar(string path) 
         {
             List<Carta>? lista = new List<Carta>();
-            //string path = Application.StartupPath + @"\Cartas:Serializadas\cartas.json";
 
             try 
             {
@@ -27,7 +26,6 @@ namespace Entidades
                     string jsonString = File.ReadAllText(path);
 
                     lista = JsonConvert.DeserializeObject<List<Carta>>(jsonString);
-                    //lista = System.Text.Json.JsonSerializer.Deserialize<List<Carta>>(jsonString);
                 }
             }
             catch (Exception) 

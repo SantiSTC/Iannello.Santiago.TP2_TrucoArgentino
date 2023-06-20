@@ -10,6 +10,8 @@ namespace Entidades
     {
         private Partida partida;
 
+        public Ronda() { }
+
         public Ronda(Partida p) 
         {
             this.partida = p;
@@ -116,7 +118,7 @@ namespace Entidades
             }
             else
             {
-                if (c1.ValorTruco < c2.ValorTruco) 
+                if (c1.ValorTruco < c2.ValorTruco)
                 {
                     aux = c2;
                 }

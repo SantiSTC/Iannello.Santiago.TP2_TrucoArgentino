@@ -34,7 +34,6 @@
             j2_3 = new PictureBox();
             j2_2 = new PictureBox();
             j2_1 = new PictureBox();
-            button1 = new Button();
             label1 = new Label();
             label2 = new Label();
             btnRealEnvido = new Button();
@@ -115,16 +114,6 @@
             j2_1.TabStop = false;
             j2_1.Click += j2_1_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(19, 507);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 6;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -137,7 +126,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(378, 507);
+            label2.Location = new Point(378, 511);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 8;
@@ -221,7 +210,7 @@
             // ptsJ1
             // 
             ptsJ1.AutoSize = true;
-            ptsJ1.Location = new Point(130, 511);
+            ptsJ1.Location = new Point(19, 511);
             ptsJ1.Name = "ptsJ1";
             ptsJ1.Size = new Size(38, 15);
             ptsJ1.TabIndex = 16;
@@ -239,7 +228,7 @@
             // lblTurnoJ1
             // 
             lblTurnoJ1.AutoSize = true;
-            lblTurnoJ1.Location = new Point(250, 511);
+            lblTurnoJ1.Location = new Point(190, 511);
             lblTurnoJ1.Name = "lblTurnoJ1";
             lblTurnoJ1.Size = new Size(38, 15);
             lblTurnoJ1.TabIndex = 18;
@@ -262,7 +251,6 @@
             Controls.Add(btnRealEnvido);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button1);
             Controls.Add(j2_3);
             Controls.Add(j2_2);
             Controls.Add(j2_1);
@@ -271,6 +259,7 @@
             Controls.Add(j1_1);
             Name = "FrmPartida";
             Text = "FrmPartida";
+            FormClosing += FrmPartida_FormClosing;
             Load += FrmPartida_Load;
             ((System.ComponentModel.ISupportInitialize)j1_1).EndInit();
             ((System.ComponentModel.ISupportInitialize)j1_2).EndInit();
@@ -290,7 +279,6 @@
         private PictureBox j2_3;
         private PictureBox j2_2;
         private PictureBox j2_1;
-        private Button button1;
         private Label label1;
         private Label label2;
         private Button btnRealEnvido;
