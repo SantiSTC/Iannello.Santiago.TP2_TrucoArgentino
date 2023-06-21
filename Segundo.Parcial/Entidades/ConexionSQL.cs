@@ -22,7 +22,8 @@ namespace Entidades
 
         static ConexionSQL() 
         {
-            ConexionSQL<T>.cadena_conexion = @"Server=localhost;Database=db_truco;Trusted_Connection=True;";
+            ConexionSQL<T>.cadena_conexion = @"Server=LAB6PC30;User ID=sa;Password=alumno;Database=db_truco;Trusted_Connection=True;";
+            //ConexionSQL<T>.cadena_conexion = @"Server=localhost;Database=db_truco;Trusted_Connection=True;";
         }
 
         public ConexionSQL() 
