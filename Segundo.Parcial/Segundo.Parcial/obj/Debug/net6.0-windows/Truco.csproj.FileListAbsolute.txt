@@ -105,3 +105,4 @@ C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmListarPartida.resources
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmListarJugadores.resources
 C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmCrearPartida.resources
+C:\Users\Santiago\source\repos\Segundo.Parcial\Segundo.Parcial\obj\Debug\net6.0-windows\Truco.FrmRegistrarse.resources

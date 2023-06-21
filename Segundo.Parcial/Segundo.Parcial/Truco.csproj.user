@@ -19,5 +19,8 @@
     <Compile Update="FrmPartida.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmRegistrarse.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

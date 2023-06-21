@@ -18,6 +18,8 @@ namespace Entidades
         public int ValorTruco { get {  return this.valorTruco; } set { this.valorTruco = value; } }
         public int ValorEnvido { get {  return this.valorEnvido; } set { this.valorEnvido = value; } }
 
+        public Carta() { }
+
         public Carta(EPalos palo, int numero, int valorTruco, int valorEnvido)
         {
             Palo = palo;

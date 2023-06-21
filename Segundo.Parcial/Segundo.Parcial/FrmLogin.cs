@@ -28,9 +28,9 @@ namespace Truco
             Jugador jugador = new Jugador(this.txtNombre.Text, this.txtContrasenia.Text);
             bool usuarioExiste = false;
 
-            foreach(Jugador j in this.usuarios) 
+            foreach (Jugador j in this.usuarios)
             {
-                if (j == jugador) 
+                if (j == jugador)
                 {
                     FrmLogin.usuarioLogueado = jugador;
                     usuarioExiste = true;
@@ -50,15 +50,26 @@ namespace Truco
                     this.Close();
                 }
             }
-            else 
+            else
             {
-                MessageBox.Show("Usuario o Contraña incorrectos. Verifique.", "Error!", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+                MessageBox.Show("Usuario o Contraña incorrectos. Verifique.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.usuarios = new Jugador().ObtenerDatos("usuarios");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmRegistrarse fm = new FrmRegistrarse();
+            this.Hide();
+            if (fm.ShowDialog() == DialogResult.Cancel)
+            {
+                this.Show();
+                this.usuarios = new Jugador().ObtenerDatos("usuarios");
+            }
         }
     }
 }

@@ -34,6 +34,8 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             button1 = new Button();
+            linkLabel1 = new LinkLabel();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -85,12 +87,35 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = Color.FromArgb(0, 64, 0);
+            linkLabel1.Location = new Point(225, 307);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(80, 15);
+            linkLabel1.TabIndex = 5;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Registrate acá";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(123, 307);
+            label2.Name = "label2";
+            label2.Size = new Size(106, 15);
+            label2.TabIndex = 6;
+            label2.Text = "¿No tenés cuenta? ";
+            // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(428, 336);
+            Controls.Add(label2);
+            Controls.Add(linkLabel1);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -105,11 +130,12 @@
         }
 
         #endregion
-
-        private TextBox txtNombre;
-        private TextBox txtContrasenia;
         private PictureBox pictureBox1;
-        private Label label1;
-        private Button button1;
+        private LinkLabel linkLabel1;
+        private Label label2;
+        protected Label label1;
+        public TextBox txtNombre;
+        public TextBox txtContrasenia;
+        public Button button1;
     }
 }

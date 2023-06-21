@@ -105,7 +105,6 @@ namespace Entidades
                     this.comando.CommandType = CommandType.Text;
 
                     this.comando.Parameters.AddWithValue("@id", id);
-                    //this.comando.Parameters.AddWithValue("@nombreTabla", nombreTabla);
 
                     this.comando.CommandText = $"SELECT * FROM {nombreTabla} WHERE id = @id";
                     this.comando.Connection = this.conexion;
