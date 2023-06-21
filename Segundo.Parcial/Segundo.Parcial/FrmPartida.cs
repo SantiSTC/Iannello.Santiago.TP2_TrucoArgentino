@@ -26,6 +26,7 @@ namespace Truco
         private ETantos? estadoEnvido;
         private int cartasSobreLaMesa;
         private bool fueParda;
+        int manosJugadas;
 
         private event EventHandler? FinDeMano;
         private event EventHandler? BotonPresionado;
@@ -35,6 +36,7 @@ namespace Truco
         {
             InitializeComponent();
             this.partida = partida;
+            manosJugadas = 0;
         }
 
         private void FrmPartida_Load(object sender, EventArgs e)
@@ -310,8 +312,27 @@ namespace Truco
             this.j2_2.Enabled = true;
             this.j2_3.Enabled = true;
             this.fueParda = false;
+            this.manosJugadas++;
 
-            this.IniciarRonda();
+            if(this.manosJugadas < 5)
+            {
+                this.IniciarRonda();
+            }
+            else
+            {
+                if(this.partida.PtsJugador1 > this.partida.PtsJugador2)
+                {
+                    FrmGanador fm = new FrmGanador(this.partida.Jugador1, this.partida.PtsJugador1);
+                    fm.ShowDialog();
+                }
+                else
+                {
+                    FrmGanador fm = new FrmGanador(this.partida.Jugador2, this.partida.PtsJugador2);
+                    fm.ShowDialog();
+                }
+               
+                this.Close();
+            }
         }
 
         private void HabilitarBotones(object sender, EventArgs e)
